@@ -1,0 +1,146 @@
+	.file	"main.c"
+	.text
+	.p2align 4,,15
+	.globl	WndProc
+	.def	WndProc;	.scl	2;	.type	32;	.endef
+	.seh_proc	WndProc
+WndProc:
+	subq	$40, %rsp
+	.seh_stackalloc	40
+	.seh_endprologue
+	cmpl	$2, %edx
+	je	.L7
+	movq	__imp_DefWindowProcA(%rip), %rax
+	addq	$40, %rsp
+	rex.W jmp *%rax
+	.p2align 4,,10
+.L7:
+	xorl	%ecx, %ecx
+	call	*__imp_PostQuitMessage(%rip)
+	xorl	%eax, %eax
+	addq	$40, %rsp
+	ret
+	.seh_endproc
+	.section .rdata,"dr"
+.LC0:
+	.ascii "WindowClass\0"
+.LC1:
+	.ascii "Error!\0"
+.LC2:
+	.ascii "Window Registration Failed!\0"
+.LC3:
+	.ascii "Caption\0"
+.LC4:
+	.ascii "Window Creation Failed!\0"
+	.text
+	.p2align 4,,15
+	.globl	WinMain
+	.def	WinMain;	.scl	2;	.type	32;	.endef
+	.seh_proc	WinMain
+WinMain:
+	pushq	%rbp
+	.seh_pushreg	%rbp
+	pushq	%rdi
+	.seh_pushreg	%rdi
+	pushq	%rsi
+	.seh_pushreg	%rsi
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$232, %rsp
+	.seh_stackalloc	232
+	.seh_endprologue
+	xorl	%eax, %eax
+	movl	$32512, %edx
+	leaq	144(%rsp), %rbx
+	movq	%rcx, %rbp
+	movl	$10, %ecx
+	movq	%rbx, %rdi
+	rep stosq
+	leaq	WndProc(%rip), %rax
+	movl	$80, 144(%rsp)
+	movq	%rbp, 168(%rsp)
+	movq	%rax, 152(%rsp)
+	call	*__imp_LoadCursorA(%rip)
+	movq	%rax, 184(%rsp)
+	leaq	.LC0(%rip), %rax
+	xorl	%ecx, %ecx
+	movl	$32512, %edx
+	movq	__imp_LoadIconA(%rip), %rsi
+	movq	$6, 192(%rsp)
+	movq	%rax, 208(%rsp)
+	call	*%rsi
+	xorl	%ecx, %ecx
+	movl	$32512, %edx
+	movq	%rax, 176(%rsp)
+	call	*%rsi
+	movq	%rbx, %rcx
+	movq	%rax, 216(%rsp)
+	call	*__imp_RegisterClassExA(%rip)
+	testw	%ax, %ax
+	je	.L15
+	movq	$0, 88(%rsp)
+	movq	%rbp, 80(%rsp)
+	movl	$282001408, %r9d
+	movq	$0, 72(%rsp)
+	movq	$0, 64(%rsp)
+	leaq	.LC3(%rip), %r8
+	movl	$480, 56(%rsp)
+	movl	$640, 48(%rsp)
+	leaq	.LC0(%rip), %rdx
+	movl	$-2147483648, 40(%rsp)
+	movl	$-2147483648, 32(%rsp)
+	movl	$512, %ecx
+	call	*__imp_CreateWindowExA(%rip)
+	testq	%rax, %rax
+	je	.L12
+	leaq	96(%rsp), %rbx
+	movq	__imp_GetMessageA(%rip), %rsi
+	movq	__imp_TranslateMessage(%rip), %rbp
+	movq	__imp_DispatchMessageA(%rip), %rdi
+	jmp	.L13
+	.p2align 4,,10
+.L14:
+	movq	%rbx, %rcx
+	call	*%rbp
+	movq	%rbx, %rcx
+	call	*%rdi
+.L13:
+	xorl	%r9d, %r9d
+	xorl	%r8d, %r8d
+	xorl	%edx, %edx
+	movq	%rbx, %rcx
+	call	*%rsi
+	testl	%eax, %eax
+	jg	.L14
+	movl	112(%rsp), %eax
+.L11:
+	addq	$232, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	popq	%rbp
+	ret
+	.p2align 4,,10
+.L15:
+	leaq	.LC1(%rip), %r8
+	leaq	.LC2(%rip), %rdx
+	movl	$48, %r9d
+	xorl	%ecx, %ecx
+	call	*__imp_MessageBoxA(%rip)
+	xorl	%eax, %eax
+	addq	$232, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	popq	%rbp
+	ret
+.L12:
+	movl	$48, %r9d
+	leaq	.LC1(%rip), %r8
+	leaq	.LC4(%rip), %rdx
+	xorl	%ecx, %ecx
+	call	*__imp_MessageBoxA(%rip)
+	xorl	%eax, %eax
+	jmp	.L11
+	.seh_endproc
+	.ident	"GCC: (tdm64-2) 4.8.1"

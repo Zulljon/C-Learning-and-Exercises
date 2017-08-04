@@ -1,0 +1,315 @@
+
+studoi.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000200  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .comment      00000030  00000000  00000000  00000254  2**0
+                  CONTENTS, READONLY
+  2 .debug_aranges 00000038  00000000  00000000  00000284  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  3 .debug_info   00000323  00000000  00000000  000002bc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_abbrev 00000150  00000000  00000000  000005df  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_line   0000008b  00000000  00000000  0000072f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_frame  0000009c  00000000  00000000  000007bc  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_str    0000014b  00000000  00000000  00000858  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_loc    0000020e  00000000  00000000  000009a3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_ranges 00000028  00000000  00000000  00000bb1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+   8:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+   c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  10:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  14:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  18:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  1c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  20:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  24:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  28:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  2c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  30:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  34:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  38:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  3c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  40:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  44:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  48:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  4c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  50:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  54:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  58:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  5c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  60:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  64:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+  74:	0e 94 f1 00 	call	0x1e2	; 0x1e2 <main>
+  78:	0c 94 fe 00 	jmp	0x1fc	; 0x1fc <_exit>
+
+0000007c <__bad_interrupt>:
+  7c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000080 <Zot>:
+	b = ((b & 0xAA)>>1)|((b & 0x55)<<1);
+	b = ((b & 0xF0)>>4)|((b & 0x0F)<<4);
+	return b;
+}
+
+char Zot(char a){
+  80:	cf 93       	push	r28
+  82:	df 93       	push	r29
+  84:	00 d0       	rcall	.+0      	; 0x86 <Zot+0x6>
+  86:	cd b7       	in	r28, 0x3d	; 61
+  88:	de b7       	in	r29, 0x3e	; 62
+			unsigned char six:1;
+			unsigned char seven:1;
+			unsigned char eight:1;
+		}bits;
+	} in,out ;
+	in.byte = a;
+  8a:	89 83       	std	Y+1, r24	; 0x01
+	//printf("%d\n",in.byte);
+	//out.byte = in.byte;
+	out.bits.one=in.bits.eight;
+  8c:	99 81       	ldd	r25, Y+1	; 0x01
+  8e:	97 fb       	bst	r25, 7
+  90:	99 27       	eor	r25, r25
+  92:	90 f9       	bld	r25, 0
+  94:	8a 81       	ldd	r24, Y+2	; 0x02
+  96:	90 fb       	bst	r25, 0
+  98:	80 f9       	bld	r24, 0
+  9a:	8a 83       	std	Y+2, r24	; 0x02
+	out.bits.two=in.bits.seven;
+  9c:	99 81       	ldd	r25, Y+1	; 0x01
+  9e:	96 fb       	bst	r25, 6
+  a0:	99 27       	eor	r25, r25
+  a2:	90 f9       	bld	r25, 0
+  a4:	8a 81       	ldd	r24, Y+2	; 0x02
+  a6:	90 fb       	bst	r25, 0
+  a8:	81 f9       	bld	r24, 1
+  aa:	8a 83       	std	Y+2, r24	; 0x02
+	out.bits.three=in.bits.six;
+  ac:	99 81       	ldd	r25, Y+1	; 0x01
+  ae:	95 fb       	bst	r25, 5
+  b0:	99 27       	eor	r25, r25
+  b2:	90 f9       	bld	r25, 0
+  b4:	8a 81       	ldd	r24, Y+2	; 0x02
+  b6:	90 fb       	bst	r25, 0
+  b8:	82 f9       	bld	r24, 2
+  ba:	8a 83       	std	Y+2, r24	; 0x02
+	out.bits.four=in.bits.five;
+  bc:	99 81       	ldd	r25, Y+1	; 0x01
+  be:	92 95       	swap	r25
+  c0:	91 70       	andi	r25, 0x01	; 1
+  c2:	8a 81       	ldd	r24, Y+2	; 0x02
+  c4:	90 fb       	bst	r25, 0
+  c6:	83 f9       	bld	r24, 3
+  c8:	8a 83       	std	Y+2, r24	; 0x02
+	out.bits.five=in.bits.four;
+  ca:	99 81       	ldd	r25, Y+1	; 0x01
+  cc:	93 fb       	bst	r25, 3
+  ce:	99 27       	eor	r25, r25
+  d0:	90 f9       	bld	r25, 0
+  d2:	8a 81       	ldd	r24, Y+2	; 0x02
+  d4:	90 fb       	bst	r25, 0
+  d6:	84 f9       	bld	r24, 4
+  d8:	8a 83       	std	Y+2, r24	; 0x02
+	out.bits.six=in.bits.three;
+  da:	99 81       	ldd	r25, Y+1	; 0x01
+  dc:	92 fb       	bst	r25, 2
+  de:	99 27       	eor	r25, r25
+  e0:	90 f9       	bld	r25, 0
+  e2:	8a 81       	ldd	r24, Y+2	; 0x02
+  e4:	90 fb       	bst	r25, 0
+  e6:	85 f9       	bld	r24, 5
+  e8:	8a 83       	std	Y+2, r24	; 0x02
+	out.bits.seven=in.bits.two;
+  ea:	99 81       	ldd	r25, Y+1	; 0x01
+  ec:	96 95       	lsr	r25
+  ee:	91 70       	andi	r25, 0x01	; 1
+  f0:	8a 81       	ldd	r24, Y+2	; 0x02
+  f2:	90 fb       	bst	r25, 0
+  f4:	86 f9       	bld	r24, 6
+  f6:	8a 83       	std	Y+2, r24	; 0x02
+	out.bits.eight=in.bits.one;
+  f8:	99 81       	ldd	r25, Y+1	; 0x01
+  fa:	8a 81       	ldd	r24, Y+2	; 0x02
+  fc:	90 fb       	bst	r25, 0
+  fe:	87 f9       	bld	r24, 7
+ 100:	8a 83       	std	Y+2, r24	; 0x02
+	//printf("%d\n",out.byte);
+	return out.byte;
+ 102:	8a 81       	ldd	r24, Y+2	; 0x02
+}
+ 104:	0f 90       	pop	r0
+ 106:	0f 90       	pop	r0
+ 108:	df 91       	pop	r29
+ 10a:	cf 91       	pop	r28
+ 10c:	08 95       	ret
+
+0000010e <Zot2>:
+
+char Zot2(char a){
+ 10e:	af 92       	push	r10
+ 110:	bf 92       	push	r11
+ 112:	cf 92       	push	r12
+ 114:	df 92       	push	r13
+ 116:	ef 92       	push	r14
+ 118:	ff 92       	push	r15
+ 11a:	0f 93       	push	r16
+ 11c:	1f 93       	push	r17
+ 11e:	cf 93       	push	r28
+ 120:	df 93       	push	r29
+ 122:	1f 92       	push	r1
+ 124:	cd b7       	in	r28, 0x3d	; 61
+ 126:	de b7       	in	r29, 0x3e	; 62
+			unsigned char six:1;
+			unsigned char seven:1;
+			unsigned char eight:1;
+		}bits;
+	} in ;
+	in.byte = a;
+ 128:	89 83       	std	Y+1, r24	; 0x01
+
+	char out;
+	out=(in.bits.eight<<0)|(in.bits.seven<<1)|(in.bits.six<<2)|(in.bits.five<<3)|(in.bits.four<<4)|(in.bits.three<<5)|(in.bits.two<<6)|(in.bits.one<<7);
+ 12a:	c9 80       	ldd	r12, Y+1	; 0x01
+ 12c:	c7 fa       	bst	r12, 7
+ 12e:	cc 24       	eor	r12, r12
+ 130:	c0 f8       	bld	r12, 0
+ 132:	a9 80       	ldd	r10, Y+1	; 0x01
+ 134:	b9 80       	ldd	r11, Y+1	; 0x01
+ 136:	d9 80       	ldd	r13, Y+1	; 0x01
+ 138:	e9 80       	ldd	r14, Y+1	; 0x01
+ 13a:	f9 80       	ldd	r15, Y+1	; 0x01
+ 13c:	99 81       	ldd	r25, Y+1	; 0x01
+ 13e:	89 81       	ldd	r24, Y+1	; 0x01
+ 140:	a6 fa       	bst	r10, 6
+ 142:	00 27       	eor	r16, r16
+ 144:	00 f9       	bld	r16, 0
+ 146:	10 e0       	ldi	r17, 0x00	; 0
+ 148:	00 0f       	add	r16, r16
+ 14a:	11 1f       	adc	r17, r17
+ 14c:	b5 fa       	bst	r11, 5
+ 14e:	aa 27       	eor	r26, r26
+ 150:	a0 f9       	bld	r26, 0
+ 152:	b0 e0       	ldi	r27, 0x00	; 0
+ 154:	aa 0f       	add	r26, r26
+ 156:	bb 1f       	adc	r27, r27
+ 158:	aa 0f       	add	r26, r26
+ 15a:	bb 1f       	adc	r27, r27
+ 15c:	a0 2b       	or	r26, r16
+ 15e:	ac 29       	or	r26, r12
+ 160:	d4 fa       	bst	r13, 4
+ 162:	ee 27       	eor	r30, r30
+ 164:	e0 f9       	bld	r30, 0
+ 166:	f0 e0       	ldi	r31, 0x00	; 0
+ 168:	ee 0f       	add	r30, r30
+ 16a:	ff 1f       	adc	r31, r31
+ 16c:	ee 0f       	add	r30, r30
+ 16e:	ff 1f       	adc	r31, r31
+ 170:	ee 0f       	add	r30, r30
+ 172:	ff 1f       	adc	r31, r31
+ 174:	ea 2b       	or	r30, r26
+ 176:	e3 fa       	bst	r14, 3
+ 178:	66 27       	eor	r22, r22
+ 17a:	60 f9       	bld	r22, 0
+ 17c:	70 e0       	ldi	r23, 0x00	; 0
+ 17e:	62 95       	swap	r22
+ 180:	72 95       	swap	r23
+ 182:	70 7f       	andi	r23, 0xF0	; 240
+ 184:	76 27       	eor	r23, r22
+ 186:	60 7f       	andi	r22, 0xF0	; 240
+ 188:	76 27       	eor	r23, r22
+ 18a:	6e 2b       	or	r22, r30
+ 18c:	f2 fa       	bst	r15, 2
+ 18e:	44 27       	eor	r20, r20
+ 190:	40 f9       	bld	r20, 0
+ 192:	50 e0       	ldi	r21, 0x00	; 0
+ 194:	44 0f       	add	r20, r20
+ 196:	55 1f       	adc	r21, r21
+ 198:	42 95       	swap	r20
+ 19a:	52 95       	swap	r21
+ 19c:	50 7f       	andi	r21, 0xF0	; 240
+ 19e:	54 27       	eor	r21, r20
+ 1a0:	40 7f       	andi	r20, 0xF0	; 240
+ 1a2:	54 27       	eor	r21, r20
+ 1a4:	46 2b       	or	r20, r22
+ 1a6:	91 fb       	bst	r25, 1
+ 1a8:	22 27       	eor	r18, r18
+ 1aa:	20 f9       	bld	r18, 0
+ 1ac:	30 e0       	ldi	r19, 0x00	; 0
+ 1ae:	00 24       	eor	r0, r0
+ 1b0:	36 95       	lsr	r19
+ 1b2:	27 95       	ror	r18
+ 1b4:	07 94       	ror	r0
+ 1b6:	36 95       	lsr	r19
+ 1b8:	27 95       	ror	r18
+ 1ba:	07 94       	ror	r0
+ 1bc:	32 2f       	mov	r19, r18
+ 1be:	20 2d       	mov	r18, r0
+ 1c0:	24 2b       	or	r18, r20
+ 1c2:	87 95       	ror	r24
+ 1c4:	88 27       	eor	r24, r24
+ 1c6:	87 95       	ror	r24
+
+	return out;
+}
+ 1c8:	82 2b       	or	r24, r18
+ 1ca:	0f 90       	pop	r0
+ 1cc:	df 91       	pop	r29
+ 1ce:	cf 91       	pop	r28
+ 1d0:	1f 91       	pop	r17
+ 1d2:	0f 91       	pop	r16
+ 1d4:	ff 90       	pop	r15
+ 1d6:	ef 90       	pop	r14
+ 1d8:	df 90       	pop	r13
+ 1da:	cf 90       	pop	r12
+ 1dc:	bf 90       	pop	r11
+ 1de:	af 90       	pop	r10
+ 1e0:	08 95       	ret
+
+000001e2 <main>:
+
+int main(void){
+	char d,n,xc,i;
+	xc = Zotr(7);
+	d = Zot(5);
+ 1e2:	85 e0       	ldi	r24, 0x05	; 5
+ 1e4:	0e 94 40 00 	call	0x80	; 0x80 <Zot>
+	n = Zot2(3);
+ 1e8:	83 e0       	ldi	r24, 0x03	; 3
+ 1ea:	0e 94 87 00 	call	0x10e	; 0x10e <Zot2>
+	while(1)
+    {
+		d = Zot(5);
+ 1ee:	85 e0       	ldi	r24, 0x05	; 5
+ 1f0:	0e 94 40 00 	call	0x80	; 0x80 <Zot>
+		n = Zot2(3);
+ 1f4:	83 e0       	ldi	r24, 0x03	; 3
+ 1f6:	0e 94 87 00 	call	0x10e	; 0x10e <Zot2>
+ 1fa:	f9 cf       	rjmp	.-14     	; 0x1ee <main+0xc>
+
+000001fc <_exit>:
+ 1fc:	f8 94       	cli
+
+000001fe <__stop_program>:
+ 1fe:	ff cf       	rjmp	.-2      	; 0x1fe <__stop_program>
