@@ -3,5 +3,10 @@
 
 uint32_t main(uint32_t argc, uint8_t *argv[]){
 	
+	printf("In C, lowercase letters are significant.\n");
+	printf("main is where program execution begins.\n");
+	printf("Opening and closing braces enclose program statements in a routine.\n");
+	printf("All program statements must be terminated by a semicolon.\n");
+
 	return 0;
 }
