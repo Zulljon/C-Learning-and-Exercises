@@ -5,10 +5,10 @@ Repo for save my exercises from books: K&R, Knut, Kochan etc
 To run this you need:
 1. clone repo with `git clone`
 2. enter comand in linux bash shell:
-```
-	$ cd folder/to/chapter/and/exercise
-	$ make
-	$ ./test
+```bash
+  $ cd folder/to/chapter/and/exercise
+  $ make
+  $ ./test
 ```
 
 # Tools
