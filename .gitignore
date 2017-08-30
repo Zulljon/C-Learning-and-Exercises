@@ -53,3 +53,4 @@ dkms.conf
 
 # exec file
 test
+test*
