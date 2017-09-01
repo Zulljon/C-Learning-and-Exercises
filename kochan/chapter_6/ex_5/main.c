@@ -13,12 +13,12 @@ uint32_t main(uint32_t argc, uint8_t *argv[]){
 	}
 	while ( number != 0 ) {
 		right_digit = number % 10;
-		if ( flag ) {
-			printf("-");
-			flag = 0;
-		}
 		printf ("%i", right_digit);
 		number = number / 10;
+	}
+	if ( flag ) {
+		printf("-");
+		flag = 0;
 	}
 
 	printf ("\n");
