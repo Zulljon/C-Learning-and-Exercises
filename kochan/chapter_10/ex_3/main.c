@@ -30,7 +30,7 @@ bool lookingForWord = true;
 int main (void){
 const char text1[] = "Well, here goes.";
 const char text2[] = "And here we go... aga`in.";
-const char text3[] = "Look number 13.666";
+const char text3[] = "Look number -13.666";
 int countWords (const char string[]);
 printf ("%s - words = %i\n", text1, countWords (text1));
 printf ("%s - words = %i\n", text2, countWords (text2));
