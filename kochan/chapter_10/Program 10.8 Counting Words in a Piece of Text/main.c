@@ -26,11 +26,34 @@ bool lookingForWord = true, alphabetic (const char c);
 	return wordCount;
 }
 
+void readLine (char buffer[]){
+	char character;
+	int i=0;
+
+	do	{
+		character = getchar ();
+		buffer[i] = character;
+		++i;
+	}
+	while ( character != '\n' );
+	buffer[i - 1] = '\0';
+}
+
 int main (void){
-const char text1[] = "Well, here goes.";
-const char text2[] = "And here we go... again.";
-int countWords (const char string[]);
-printf ("%s - words = %i\n", text1, countWords (text1));
-printf ("%s - words = %i\n", text2, countWords (text2));
-return 0;
+	char text[81];
+	int totalWords = 0;
+	int countWords (const char string[]);
+	void readLine (char buffer[]);
+	bool endOfText = false;
+	printf ("Type in your text.\n");
+	printf ("When you are done, press 'RETURN'.\n\n");
+	while ( ! endOfText ){
+		readLine (text);
+		if ( text[0] == '\0' )
+		endOfText = true;
+		else
+		totalWords += countWords (text);
+		}
+	printf ("\nThere are %i words in the above text.\n",totalWords);
+	return 0;
 }
