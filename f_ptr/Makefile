@@ -10,7 +10,7 @@ PROJ_NAME=test
 CC=gcc
 CFLAGS=-I.
 DEPS= main.h
-OBJ= main.o 
+OBJ= main.o
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
@@ -18,3 +18,9 @@ OBJ= main.o
 #main: $(OBJ)
 $(PROJ_NAME): $(OBJ)
 	$(CC) -lm -o $@ $^ $(CFLAGS)
+
+clean:
+	rm -rf $(OBJ) $(PROJ_NAME)
+
+version:
+	$(CC) --version
